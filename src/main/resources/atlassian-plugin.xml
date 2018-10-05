@@ -29,7 +29,7 @@
   <web-item name="Report" i18n-name-key="report.name" key="report" section="my-item-link/my-section" weight="1000">
     <description key="report.description">The Report Plugin</description>
     <label key="report.label"/>
-    <link linkId="report-link">/secure/CreateIssue!default.jspa</link>
+    <link linkId="report-link">/secure/SprintReportsAction.jspa</link>
   </web-item>
   <webwork1 key="sprint-reports" name="Sprint Reports" i18n-name-key="sprint-reports.name">
     <description key="sprint-reports.description">The Sprint Reports Plugin</description>
@@ -41,4 +41,7 @@
       </action>
     </actions>
   </webwork1>
+  <rest name="Rest Resource" i18n-name-key="rest-resource.name" key="rest-resource" path="/restresource" version="1.0">
+    <description key="rest-resource.description">The Rest Resource Plugin</description>
+  </rest>
 </atlassian-plugin>
