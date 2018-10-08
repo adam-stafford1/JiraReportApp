@@ -22,13 +22,13 @@ public class SprintReportsActionTest {
 
     }
 
-    @Test(expected=Exception.class)
-    public void testSomething() throws Exception {
+    // @Test(expected=Exception.class)
+    // public void testSomething() throws Exception {
 
-        //SprintReportsAction testClass = new SprintReportsAction();
+    //     //SprintReportsAction testClass = new SprintReportsAction();
 
-        throw new Exception("SprintReportsAction has no tests!");
+    //     throw new Exception("SprintReportsAction has no tests!");
 
-    }
+    // }
 
 }

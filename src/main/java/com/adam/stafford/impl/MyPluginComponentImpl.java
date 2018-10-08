@@ -4,6 +4,7 @@ import com.atlassian.plugin.spring.scanner.annotation.export.ExportAsService;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import com.atlassian.sal.api.ApplicationProperties;
 import com.adam.stafford.api.MyPluginComponent;
+import com.atlassian.webresource.api.assembler.PageBuilderService;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,6 +15,8 @@ public class MyPluginComponentImpl implements MyPluginComponent
 {
     @ComponentImport
     private final ApplicationProperties applicationProperties;
+    @ComponentImport
+    private PageBuilderService pageBuilderService;
 
     @Inject
     public MyPluginComponentImpl(final ApplicationProperties applicationProperties)

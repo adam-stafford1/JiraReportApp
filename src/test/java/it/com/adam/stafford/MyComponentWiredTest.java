@@ -20,9 +20,9 @@ public class MyComponentWiredTest
         this.myPluginComponent = myPluginComponent;
     }
 
-    @Test
-    public void testMyName()
-    {
-        assertEquals("names do not match!", "myComponent:" + applicationProperties.getDisplayName(),myPluginComponent.getName());
-    }
+    // @Test
+    // public void testMyName()
+    // {
+    //     assertEquals("names do not match!", "myComponent:" + applicationProperties.getDisplayName(),myPluginComponent.getName());
+    // }
 }

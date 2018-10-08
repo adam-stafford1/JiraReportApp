@@ -1,4 +1,5 @@
-console.log("IN HERE");
+
+console.log("IN HERE 1");
 AJS.toInit(function(){
     require(['aui/flag'], function(flag) {
         var myFlag = flag({

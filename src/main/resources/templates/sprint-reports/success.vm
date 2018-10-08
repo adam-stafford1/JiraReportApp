@@ -2,6 +2,34 @@
 <head>
     <title>Planning Page - Kitchen Duty Plugin</title>
     <meta name="decorator" content="atl.admin">
+    <script>
+        AJS.toInit(function(){
+            var baseUrl = AJS.params.baseURL;
+            var restUrl = baseUrl + '/rest/restresource/1.0/message';
+
+            var values = initReport(restUrl);
+        });
+
+        var initReport = function(url){
+            jQuery.ajax({
+                type: "GET",
+                url: url,
+                contentType: "application/json",
+                dataType: "json",
+                data:  "SaveRequestingData",
+                success: function (resp, status, xhr) {
+                    alert(resp.value);
+                    //var msg = "result is: " + resp.result + ", Start: " + resp.start + ", End: " + resp.end + ", issues: " + resp.issues;
+                    //alert(msg);
+                },
+                error: function(resp, status, xhr){
+                    alert('in error json');
+                    //alert("Error: " + resp.e);
+                    //jQuery("#errorPost").html("Error: " + resp.e  + " - STATUS: " + xhr.status + " " + xhr.statusText);
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 <h1>Kitchen Duty Plugin - Planning Page</h1>
