@@ -2,7 +2,10 @@
 <head>
     <title>Planning Page - Kitchen Duty Plugin</title>
     <meta name="decorator" content="atl.admin">
+    <script src = "https://www.gstatic.com/charts/loader.js"></script>
     <script>
+        google.charts.load('current', {packages: ['corechart']});
+
         AJS.toInit(function(){
             var baseUrl = AJS.params.baseURL;
             var restUrl = baseUrl + '/rest/restresource/1.0/message';
@@ -18,7 +21,9 @@
                 dataType: "json",
                 data:  "SaveRequestingData",
                 success: function (resp, status, xhr) {
-                    alert(resp.value);
+                    $('#time-spent').html(resp.timeSpent);
+                    $('#time-remaining').html(resp.timeRemaining);
+                    drawChart(resp.timeSpent, resp.timeRemaining);
                     //var msg = "result is: " + resp.result + ", Start: " + resp.start + ", End: " + resp.end + ", issues: " + resp.issues;
                     //alert(msg);
                 },
@@ -32,8 +37,33 @@
     </script>
 </head>
 <body>
-<h1>Kitchen Duty Plugin - Planning Page</h1>
+<h1>Sprint Reports</h1>
 
-<p>Now it looks nice :)</p>
+<div id="piechart" style="width: 900px; height: 500px;"></div>
+<script language = "JavaScript">
+    function drawChart(spent, remaining) {
+        // Define the chart to be drawn.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Header');
+        data.addColumn('number', 'Time');
+        data.addRows([
+            [spent + " Hours" , spent],
+            [remaining + " Hours", remaining]
+        ]);
+            
+        // Set chart options
+        var options = {
+            legend: 'none',
+            pieSliceText: 'label',
+            title: 'Time Spent On Project',
+            pieStartAngle: 100,
+        };
+
+        // Instantiate and draw the chart.
+        var chart = new google.visualization.PieChart(document.getElementById ('piechart'));
+            chart.draw(data, options);
+    }
+    google.charts.setOnLoadCallback(drawChart);
+</script>
 </body>
 </html>

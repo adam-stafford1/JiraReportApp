@@ -5,6 +5,9 @@ import com.atlassian.jira.issue.IssueManager;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import org.ofbiz.core.entity.GenericEntityException;
 import com.atlassian.jira.issue.Issue;
+import com.atlassian.jira.bc.project.ProjectService;
+import com.atlassian.jira.bc.project.ProjectService.GetProjectResult;
+import com.atlassian.jira.bc.project.ProjectResult;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -31,10 +34,12 @@ import java.util.*;
 public class RestResource {
 
     @ComponentImport private IssueManager issueManager;
+    @ComponentImport private ProjectService projectService;
 
     @Inject 
-    public RestResource(IssueManager issueManager) {
+    public RestResource(IssueManager issueManager, ProjectService projectService) {
         this.issueManager = issueManager;
+        this.projectService = projectService;
     }
 
     public RestResource() {
@@ -47,10 +52,10 @@ public class RestResource {
     {
         long pid = 10000;
         //long count = this.issueManager.getIssueCountForProject(pid);
-        String idsString = "Ids in project: ";
-        Collection<Long> issueIds = new ArrayList<Long>();;
+        Collection<Long> issueIds = new ArrayList<Long>();
         try
         {
+            ProjectResult project = projectService.getProjectById(pid);
             issueIds = issueManager.getIssueIdsForProject(pid);
         }
         catch (final GenericEntityException e)
@@ -83,9 +88,9 @@ public class RestResource {
                 //idsString = "Error";
             }
         }
+        Long hoursSpent = timeSpent / 3600;
+        Long hoursTotal = (totalTime / 3600) - hoursSpent;
 
-        String totalTimeString = timeSpent + "/" + totalTime;
-
-        return Response.ok(new RestResourceModel(totalTimeString)).build();
+        return Response.ok(new RestResourceModel(hoursSpent, hoursTotal)).build();
     }
 }

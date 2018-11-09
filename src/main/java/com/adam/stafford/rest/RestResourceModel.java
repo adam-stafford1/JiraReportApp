@@ -5,21 +5,25 @@ import javax.xml.bind.annotation.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class RestResourceModel {
 
-    @XmlElement(name = "value")
-    private String message;
+    @XmlElement(name = "timeSpent")
+    private Long timeSpent;
+
+    @XmlElement(name = "timeRemaining")
+    private Long timeRemaining;
 
     public RestResourceModel() {
     }
 
-    public RestResourceModel(String message) {
-        this.message = message;
+    public RestResourceModel(Long timeSpent, Long timeRemaining) {
+        this.timeSpent = timeSpent;
+        this.timeRemaining = timeRemaining;
     }
 
-    public String getMessage() {
-        return message;
+    public Long getTimeSpent() {
+        return timeSpent;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setTimeSpen(Long timeSpent) {
+        this.timeSpent = timeSpent;
     }
 }
