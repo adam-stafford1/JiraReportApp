@@ -1,1 +1,1 @@
-# JiraAdam
+# Jira Report Application
